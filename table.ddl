@@ -10,6 +10,7 @@ CREATE TABLE `Professor` (
 `degrees` varchar(50) DEFAULT NULL,
 PRIMARY KEY (`ssn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `ProfessorAddress` (
 `ssn` int(11) DEFAULT NULL,
 `street` varchar(50) DEFAULT NULL,
@@ -20,6 +21,7 @@ KEY `ssn` (`ssn`),
 CONSTRAINT `ProfessorAddress_ibfk_1` FOREIGN KEY (`ssn`) REFERENCES `Professor`
 (`ssn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `ProfessorTelephone` (
 `ssn` int(11) DEFAULT NULL,
 `areacode` int(11) DEFAULT NULL,
@@ -28,6 +30,7 @@ KEY `ssn` (`ssn`),
 CONSTRAINT `ProfessorTelephone_ibfk_1` FOREIGN KEY (`ssn`) REFERENCES
 `Professor` (`ssn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `Department` (
 `dno` int(11) NOT NULL,
 `dname` varchar(50) DEFAULT NULL,
@@ -39,6 +42,7 @@ KEY `professor_ssn` (`professor_ssn`),
 CONSTRAINT `Department_ibfk_1` FOREIGN KEY (`professor_ssn`) REFERENCES
 `Professor` (`ssn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `Course` (
 `cno` int(11) NOT NULL AUTO_INCREMENT,
 `c_title` varchar(50) DEFAULT NULL,
@@ -50,12 +54,14 @@ KEY `dno` (`dno`),
 CONSTRAINT `Course_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `Department` (`dno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=451 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `CoursePreq` (
 `cno` int(11) DEFAULT NULL,
 `pre_req` varchar(20) DEFAULT NULL,
 KEY `cno` (`cno`),
 CONSTRAINT `CoursePreq_ibfk_1` FOREIGN KEY (`cno`) REFERENCES `Course` (`cno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `Section` (
 `sno` int(11) NOT NULL AUTO_INCREMENT,
 `cno` int(11) DEFAULT NULL,
@@ -73,6 +79,7 @@ CONSTRAINT `Section_ibfk_2` FOREIGN KEY (`professor_ssn`) REFERENCES
 CONSTRAINT `Section_ibfk_3` FOREIGN KEY (`cno`) REFERENCES `Course` (`cno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `Students` (
 `id` int(11) NOT NULL,
 `fname` varchar(50) DEFAULT NULL,
@@ -82,12 +89,14 @@ CREATE TABLE `Students` (
 `major` varchar(50) DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `StudentMinor` (
 `id` int(11) DEFAULT NULL,
 `minor` varchar(20) DEFAULT NULL,
 KEY `id` (`id`),
 CONSTRAINT `StudentMinor_ibfk_1` FOREIGN KEY (`id`) REFERENCES `Students` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
 CREATE TABLE `Enrollment` (
 `student_id` int(11) DEFAULT NULL,
 `cno` int(11) DEFAULT NULL,
